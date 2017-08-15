@@ -3,6 +3,6 @@ version: '3'
 services:
   web:
     build: .
-    image: brewhausse-web
+    image: brewweb
     ports:
      - 3000:3000
