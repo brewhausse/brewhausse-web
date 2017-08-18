@@ -1,0 +1,31 @@
+body {
+  font-size: 1.75em;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.nav-bar {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-bar ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar li {
+    display: inline;    
+}
+
+.nav-bar .nav-item {
+  padding-left: 20px;
+  text-decoration: none;
+}
