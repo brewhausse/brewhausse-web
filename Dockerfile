@@ -1,17 +1,63 @@
-FROM node:boron
+# https://semaphoreci.com/community/tutorials/dockerizing-a-node-js-web-application
+# Dockerfile for node express apps
+FROM debian:jessie
 
-# Create app directory
-WORKDIR /usr/src/app
+# Replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Set environment variables
+ENV appDir /var/www/app/current
 
-# Install app dependencies
-COPY /app/package.json .
-# For npm@5 or later, copy package-lock.json as well
-# COPY package.json package-lock.json .
+# Run updates and install deps
+RUN apt-get update
 
-RUN npm install
+# Install needed deps and clean up after
+RUN apt-get install -y -q --no-install-recommends \
+    apt-transport-https \
+    build-essential \
+    ca-certificates \
+    curl \
+    g++ \
+    gcc \
+    git \
+    make \
+    nginx \
+    sudo \
+    wget \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get -y autoclean
 
-# Bundle app source
-COPY /app/. .
+# Install NVM
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 6.11.2
 
-EXPOSE 3000
-CMD [ "npm", "start" ]
+# Install nvm with node and npm
+#COPY /resources/nvm.install.sh /var/resources/nvm.install.sh
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash \
+    && source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+# Set up our PATH correctly so we don't have to long-reference npm, node, &c.
+ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+# Set the work directory
+RUN mkdir -p /var/www/app/current
+WORKDIR ${appDir}
+
+# Add our package.json and install *before* adding our application files
+ADD /app/package.json ./
+RUN npm i --production
+
+# Install pm2 *globally* so we can run our application
+RUN npm i -g pm2
+
+# Add application files
+ADD . /var/www/app/current
+
+#Expose the port
+EXPOSE 4500
+
+CMD ["pm2", "start", "processes.json", "--no-daemon"]
+# the --no-daemon is a minor workaround to prevent the docker container from thinking pm2 has stopped running and ending itself
