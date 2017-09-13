@@ -1,0 +1,19 @@
+#!/bin/bash
+#Build Docker Image
+VERSION="1.0.0.${env.BUILD_NUMBER:-99}"
+NAME=%CONTAINER_NAME%
+IMAGE=%DOCKER_REPO%/${NAME}
+
+docker build -t ${IMAGE} .
+#docker tag ${IMAGE} ${IMAGE}:${VERSION}
+#docker tag ${IMAGE} ${IMAGE}:latest
+
+#!/bin/bash
+#Run New Container
+NAME=%CONTAINER_NAME%
+IMAGE=%DOCKER_REPO%/${NAME}
+
+docker stop ${NAME}
+docker rm ${NAME}
+
+docker run -p %PORT_MAPPING% -dt --name ${NAME} ${IMAGE}
