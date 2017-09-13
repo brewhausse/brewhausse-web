@@ -14,8 +14,15 @@ var projects = require('./routes/projects');
 
 var app = express();
 
+var hbs = exphbs.create({
+  extname: '.hbs',
+  defaultLayout: 'layout',  
+  layoutsDir: path.join(__dirname, 'views', 'layouts'),
+  partialsDir: [path.join(__dirname, 'views', 'partials')]
+})
+
 // view engine setup
-app.engine('.hbs', exphbs({extname: '.hbs', layoutsDir: path.join(__dirname, 'views', 'layouts'), partialsDir: path.join(__dirname, 'views', 'partials') }))
+app.engine('.hbs', hbs.engine)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 
