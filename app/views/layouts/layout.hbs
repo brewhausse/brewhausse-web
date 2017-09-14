@@ -6,7 +6,7 @@
   <meta name="description" content="The home of all things brewhausse.">
   <meta name="author" content="Marshall Hauser">
 
-   <!-- Mobile Specific Metas
+  <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,14 +14,18 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-  <title>{{title}}</title>  
+  <title>{{title}}</title>
   <link rel='stylesheet' href='/components/skeleton/css/normalize.css' />
   <link rel='stylesheet' href='/components/skeleton/css/skeleton.css' />
   <link rel='stylesheet' href='/stylesheets/custom.css' />
 </head>
-
 <body>
-  {{{body}}}
+  <div class="container">
+    {{> header }} 
+    <section class="page">
+    {{{body}}}
+    </section>     
+    {{> footer }}
+  </div>
 </body>
-
 </html>
