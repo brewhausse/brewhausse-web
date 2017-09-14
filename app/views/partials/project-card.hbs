@@ -1,7 +1,27 @@
 <div class="card">
-  <img src="img_avatar.png" alt="Avatar" style="width:100%">
-  <div class="container">
-    <h4><b>{{ title }}</b></h4> 
-    <p>{{ description }}</p> 
+  <div class="row">
+    <div class="one-third column">
+      <div class="card-image">
+        <img src="{{imageUrl}}">
+      </div>
+    </div>
+    <div class="two-thirds column">
+      <div class="card-stack">
+        <div class="row">
+          <div class="twelve columns">
+            <div class="card-title">
+              <h5>{{title}}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns">
+            <div class="card-content">
+              <p>{{short}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</div>  
