@@ -1,2 +1,6 @@
 <h2>{{ title }} Page</h2>
-{{> project-card}}
+
+{{#each projects}}
+    {{> project-card}}
+{{/each}}
+<div class="u-cf"></div>
