@@ -33,7 +33,7 @@ a {
 
 /* project card styles */
 .card {
-  max-width: 430px;
+  width: 430px;
   float: left;
   /* border: 1px solid black; */
   margin: 5px 25px 25px 5px;
@@ -66,12 +66,4 @@ a {
 .card-stack{
   max-height: 150px;
   overflow-y: hidden;
-}
-
-.card-title{
-  padding: 0 0 0 10px;
-}
-
-.card-content{
-  padding: 0 0 0 10px;
 }
