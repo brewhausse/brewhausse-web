@@ -33,8 +33,7 @@ a {
 
 /* project card styles */
 .card {
-  width: 430px;
-  float: left;
+  width: 100%;
   /* border: 1px solid black; */
   margin: 5px 25px 25px 5px;
   padding: 10px;
@@ -50,17 +49,13 @@ a {
 }
 
 .card-image{
-  width: 150px;
-  height: 150px;
-  padding: 2px;
-  background-color: white;
-  overflow: hidden;
-  text-align: center;
+  min-width: 154px;
 }
 
 .card-image img {
-  height: 150px;
-  width: 150px;
+  
+  padding: 2px;
+  background-color: white;
 }
 
 .card-stack{
