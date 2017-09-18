@@ -26,6 +26,10 @@ a {
     display: inline;    
 }
 
+.nav-bar li:first-child{
+  padding: 0;
+}
+
 .nav-bar .nav-item {
   padding-left: 20px;
   text-decoration: none;
