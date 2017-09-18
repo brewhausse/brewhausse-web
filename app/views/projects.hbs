@@ -1,5 +1,20 @@
-<h2>{{ title }} Page</h2>
+<section id="projects" class="u-full-width">
+    {{#everyNth projects 2}} 
+        {{#if isModZeroNotFirst}}
+        </div>
+        {{/if}}
 
-{{#each projects}} {{> project-card}} {{/each}}
+        {{#if isModZero}}
+        <div class="row">
+        {{/if}}
 
+        <div class="six columns">
+            {{> project-card}}
+        </div>
+        
+        {{#if isLast}}
+        </div>
+        {{/if}} 
+    {{/everyNth}}
+</section>
 <div class="u-cf"></div>
