@@ -10,7 +10,7 @@ var data = [
     },
     {
         imageUrl: "http://placehold.it/150x150",
-        title: "Web interface for raspi-cam project",
+        title: "Raspi-cam project",
         short: "Creating an easy to use web app to setup timelapses.",
         content: "Content goes here..."
     },
