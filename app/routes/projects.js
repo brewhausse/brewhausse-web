@@ -38,7 +38,6 @@ router.get('/:id', function(req, res, next) {
     });
 
     var pathToProject = path.join(__appRoot, "projects", req.params.id + ".html");
-    console.log(pathToProject);
     fs.readFile(pathToProject, 'utf8', function(err, html){
         if (err) {
             throw err;
