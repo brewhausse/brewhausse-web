@@ -65,17 +65,73 @@
         <li>Summary</li>
     </ul>
 
-    <!-- <p>
-        While reading up on some of the best options for viewing a solar eclipse, I came
-        accross a great site describing how to build your own <a href="http://www.neilzim.net/sunprojector/">solar projection telescope</a>.
-        by Neil T. Zimmerman and Michael Helper. It included instructions and a parts
-        list with links to purchase the parts.  All in all, I spent less thirty-five dollars.        
+    <h4>Summary</h4>
+    <p>
+        I knew I wanted to take advantage of my one chance to see a solar eclipse so I started researching how best to view one safely.  I quickly stumbled on some homemade diy solar projector telescopes that people were putting together.  The advantage to having a telescope is that you don't have to look at the sun directly, which just seems like a completely bad idea.  And the image can be magnified for easy viewing.  One other concern for me, is that I have a two year old daughter and I really didn't want to be encouraging her to look up.
+    </p>
+    
+    <p>
+        The other thing i wanted to do was to try and record the eclipse in some way.  I had recently purchased a Raspberry Pi3 and decided I wanted to put together a timelapse pi camera project.  So I decided to pull the trigger and purchase a pi camera that I could mount in some way so I could take a series of pictures of the projected image of the sun during the eclipse.
+    </p>
+    
+    <p>
+        Once I had a series of images from the timelapse, I wanted a way to turn that into a video.  ffmpeg was the easiest tool for doing this.
+    </p>
+
+    <h4>Building the Solar Projector</h4>
+    <p>
+        I basically followed these instructions for putting together the <a href="http://www.neilzim.net/sunprojector/">solar projector</a>.  All the credit for this goes to Neil Zimmerman and Michael Hepler. The article has a lot of great info on the concept behind solar projectors along with some nice diagrams.  I'll leave it to you to go check it out.
     </p>
     <p>
-        I decided soon after that i should try and get a timelapse of the eclipse.  To do this
-        I bought a raspi-cam for my Raspberry Pi 3.  For some reason, I bought the NoIR version
-        which is more for night viewing and meant to be used with infared light.  I wasn't paying
-        attention.
+        The parts list is pretty simple.     
     </p>
-     -->
+    <ul>
+        <li>
+            27-mm diameter, 285 mm focal length lens
+        </li>
+        <li>
+            1.25" diameter, 12.5 mm focal length eyepiece
+        </li>
+        <li>
+            90&deg; star diagonal that would fit 1.25" tubing
+        </li>
+        <li>
+            Telescoping tubing
+            <ul>
+                <li>
+                    Tube #1 - 1 1/2" diameter tubing, I used some scrap pvc pipe
+                </li>
+                <li>
+                    Tube #2 - toilet paper tube
+                </li>
+                <li>
+                    1 1/4" x 1" PVC pipe bushing (see instructions on Neil's site)
+                </li>
+            </ul>
+        </li>
+        <li>
+            Projection Housing
+            <ul>
+                <li>
+                    I used some large cardboard boxes I had laying around both for the body and base of the telescope.
+                </li>
+                <li>
+                    White printer paper for image canvas.
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p>
+        Follow Neils instructions for assembly.  One thing I ended up having to do, is calibrate telescope by standing outside at night and starting through the telescope at the moon.  Once i could see the moon, I had could lengthen or shorten the length of the telescope by sliding the toilet paper tube up and down the pvc tubing.  This shortening and lengthening of the focul allowed me to dial in the image focus.  It took a few tries as I was way off on my tube lengths and so i kept having to shave off more of the pvc tubing.
+    </p>
+    <p>
+        Once I got the telescope focused, I taped it so that the tubes would stay and place and i wouldn't loose focus.  I then took a cardboard box and cut a hole in the top of the box, about three quarters from the top for the eyepiece to poke through. I then placed the telescope on the box and taped it up, so it wouldn't move.
+    </p>
+    <p>
+        I made a square cut on the side of the box for viewing the projected image.  And taped the printer paper to the inside of the box, opposite the eyepiece. For the base, I used another cardboard box.  I cut out two large round cardboard circles that I then glued to the body of the telescope so that I could set the body of the telescope into the base on it's round wheels.  This allowed the telescope to move up and down, and the base could be turned left and right for tracking the suns path accross the sky and pretty much any angle.
+    </p>
+    <h4>Raspi-cam Timelapse</h4>    
+    <p>
+        The next task was to figure out how to actually use the pi camera.
+    </p>
 </div>
