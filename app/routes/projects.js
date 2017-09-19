@@ -43,15 +43,12 @@ router.get('/:id', function(req, res, next) {
             throw err;
         }
 
-        console.log(data);
         _.extend(ret, selectedProject, {
             html: data
         });
 
-        console.log(ret);
         res.render('project', {project: ret});
     });
 });
-
 
 module.exports = router;
