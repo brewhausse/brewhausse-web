@@ -2,6 +2,7 @@ var fs = require('fs');
 var _ = require('underscore');
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 
 var data = [
     {
@@ -36,7 +37,9 @@ router.get('/:id', function(req, res, next) {
         return item.id === req.params.id;
     });
 
-    fs.readFile("./projects/" + req.params.id + ".html", 'utf8', function(err, html){
+    var pathToProject = path.join(__appRoot, "projects", req.params.id + ".html");
+    console.log(pathToProject);
+    fs.readFile(pathToProject, 'utf8', function(err, html){
         if (err) {
             throw err;
         }
