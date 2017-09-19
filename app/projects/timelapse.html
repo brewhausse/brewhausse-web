@@ -64,10 +64,14 @@
         </li>
         <li>Summary</li>
     </ul>
-
+    
     <div class="row">
-        <div class="project-image twelve columns">
-            <img class="u-max-full-width" src="http://placehold.it/650x480" alt="">
+        <div class="twelve columns">
+            <div class="project-image twelve columns">
+                <video id="video" class="u-max-full-width" controls>
+                    <source src="/video/eclipse.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
     </div>
    
@@ -161,3 +165,8 @@
         There are some calculations that need to be made when setting up a timelapse.  It really is a bit of an art.  Adjusting the number of pictures in the series and the time intervals determines the total length of the video you are making and how slow or fast the video playback appears.  As a rule of thumb, I assumed I would need 25 still photos for 1 second of playback.  
     </p>
 </div>
+
+<script>
+    var vid = document.getElementById("video");
+    vid.volume = 0.2;
+</script>
