@@ -38,21 +38,20 @@ router.get('/:id', function(req, res, next) {
     });
 
     var pathToProject = path.join(__appRoot, "projects", req.params.id + ".html");
-    fs.readFile(pathToProject, 'utf8', function(err, html){
+    fs.readFile(pathToProject, 'utf8', function(err, data){
         if (err) {
             throw err;
         }
 
-        console.log(html);
+        console.log(data);
         _.extend(ret, selectedProject, {
-            html: html
+            html: data
         });
 
         console.log(ret);
-
+        res.render('project', {project: ret});
     });
-        
-    res.render('project', { project: ret });
 });
+
 
 module.exports = router;
