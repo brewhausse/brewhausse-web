@@ -7,7 +7,7 @@ a {
 }
 
 .header {
-  margin-top: 6rem;
+  margin-top: 2rem;
   text-align: center;
 }
 
@@ -66,4 +66,13 @@ a {
 
 .card .lnk-button{
   padding: 20px;
+}
+
+.project-image{
+  margin: 15px;
+}
+
+.project-image img {
+  padding: 4px;
+  background-color: darkgray;
 }
