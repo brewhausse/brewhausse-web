@@ -7,7 +7,7 @@ var path = require('path');
 var data = [
     {
         id: "timelapse",
-        imageUrl: "/images/solar.projector.jpg",
+        imageUrl: "/images/solar.projector.350x350.jpg",
         title: "Eclipse timelapse",
         short: "Raspberry Pi camera project used to take a timelapse of the 2017 eclipse."
     },
@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
 
-    var ret = {};
+    var viewModel = {};
 
     var selectedProject = _.find(data, function(item){
         return item.id === req.params.id;
@@ -43,11 +43,11 @@ router.get('/:id', function(req, res, next) {
             throw err;
         }
 
-        _.extend(ret, selectedProject, {
+        _.extend(viewModel, selectedProject, {
             html: data
         });
 
-        res.render('project', {project: ret});
+        res.render('project', {project: viewModel});
     });
 });
 
