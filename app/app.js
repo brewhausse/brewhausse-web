@@ -14,6 +14,8 @@ var about = require('./routes/about');
 var contact = require('./routes/contact');
 var projects = require('./routes/projects');
 
+global.__appRoot = path.resolve(__dirname);
+
 var app = express();
 
 var hbs = exphbs.create({
