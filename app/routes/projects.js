@@ -7,7 +7,7 @@ var path = require('path');
 var data = [
     {
         id: "timelapse",
-        imageUrl: "http://placehold.it/350x350",
+        imageUrl: "/images/solar.projector.jpg",
         title: "Eclipse timelapse",
         short: "Raspberry Pi camera project used to take a timelapse of the 2017 eclipse."
     },
