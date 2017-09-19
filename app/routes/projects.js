@@ -10,19 +10,19 @@ var data = [
         imageUrl: "/images/solar.projector.350x350.jpg",
         title: "Eclipse timelapse",
         short: "Raspberry Pi camera project used to take a timelapse of the 2017 eclipse."
-    },
-    {
-        id: "raspi-cam",
-        imageUrl: "http://placehold.it/350x350",
-        title: "Raspi-cam project",
-        short: "Creating an easy to use web app to setup timelapses."
-    },
-    {
-        id: "ci",
-        imageUrl: "http://placehold.it/350x350",
-        title: "Continuous Integration",
-        short: "TeamCity to the rescue!"
     }
+    // ,{
+    //     id: "raspi-cam",
+    //     imageUrl: "http://placehold.it/350x350",
+    //     title: "Raspi-cam project",
+    //     short: "Creating an easy to use web app to setup timelapses."
+    // },
+    // {
+    //     id: "ci",
+    //     imageUrl: "http://placehold.it/350x350",
+    //     title: "Continuous Integration",
+    //     short: "TeamCity to the rescue!"
+    // }
 ];
 
 router.get('/', function(req, res, next) {
