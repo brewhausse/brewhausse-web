@@ -6,6 +6,7 @@ FROM debian:jessie
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # Set environment variables
 ENV appDir /var/www/app/current
+ENV VIRTUAL_HOST www.brewhausse.com
 
 # Run updates and install deps
 RUN apt-get update
