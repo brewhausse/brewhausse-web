@@ -64,7 +64,7 @@
         </li>
         <li>Summary</li>
     </ul> -->
-    
+
     <div class="row">
         <div class="twelve columns">
             <div class="project-image twelve columns">
@@ -75,29 +75,34 @@
             </div>
         </div>
     </div>
-   
     <h4>Summary</h4>
     <p>
-        I knew I wanted to take advantage of my one chance to see a solar eclipse so I started researching how best to view one safely.  I quickly stumbled on some homemade diy solar projector telescopes that people were putting together.  The advantage to having a telescope is that you don't have to look at the sun directly, which just seems like a completely bad idea.  And the image can be magnified for easy viewing.  One other concern for me, is that I have a two year old daughter and I really didn't want to be encouraging her to look up.
+        I knew I wanted to take advantage of my one chance to see a solar eclipse so I started researching how best to view one safely.
+        I came accross several homemade diy solar telescopes that people were putting together. The advantage to having such
+        a telescope is that you don't have to look directly at the sun, which just seems like a completely bad idea. Not
+        to mention the image can be magnified for easy viewing. One other concern for me, is that I have a two year old daughter
+        and I really didn't want to be encouraging her to look up.
     </p>
     <p>
-        The other thing i wanted to do was to try and record the eclipse in some way.  I had recently purchased a Raspberry Pi3 and decided I wanted to put together a timelapse pi camera project.  So I decided to pull the trigger and purchase a pi camera that I could mount in some way so I could take a series of pictures of the projected image of the sun during the eclipse.
+        The other thing I wanted to do was to try and record the eclipse in some way. I had recently purchased a Raspberry Pi3 and
+        knew I wanted to put together a timelapse camera. So I decided to pull the trigger and purchase a pi camera and marry
+        the two projects together to create a timelapse of the eclipse.
     </p>
-    
     <p>
-        Once I had a series of images from the timelapse, I wanted a way to turn that into a video.  ffmpeg was the easiest tool for doing this.
+        Once I had a series of images from the timelapse, I would turn it into a video using <a href="https://www.ffmpeg.org/">ffmpeg</a>.
+        But my main objective was to make sure I could get be taking pictures by the time the eclipse rolled around.
     </p>
-
     <h4>Building the Solar Projector</h4>
     <div class="project-image seven columns u-pull-right">
-            <img class="u-max-full-width" src="/images/solar.projector.jpg" alt="">
+        <img class="u-max-full-width" src="/images/solar.projector.jpg" alt="">
     </div>
     <p>
-        I basically followed these instructions for putting together the <a target="_blank" href="http://www.neilzim.net/sunprojector/">solar projector</a>.  All the credit for this goes to Neil Zimmerman and Michael Hepler. The article has a lot of great info on the concept behind solar projectors along with some nice diagrams.  I'll leave it to you to go check it out.
+        I basically followed these instructions for putting together the <a target="_blank" href="http://www.neilzim.net/sunprojector/">solar projector</a>.
+        All the credit for this goes to Neil Zimmerman and Michael Hepler. The article has a lot of great info on the concept
+        behind solar projectors along with some nice diagrams. I'll leave it to you to go check it out.
     </p>
-   
     <p>
-        The parts list is pretty simple.     
+        The parts list is pretty simple.
     </p>
     <ul>
         <li>
@@ -135,39 +140,65 @@
             </ul>
         </li>
     </ul>
-    <p>
-        Follow Neils instructions for assembly.  One thing I ended up having to do, is calibrate the telescope by standing outside at night and look through the telescope at the moon.  Once i could see the moon, I could then lengthen or shorten the length of the telescope by sliding the toilet paper tube up and down the pvc tubing.  This shortening and lengthening of the focal length allowed me to dial in the image focus.  It took a few tries as I was way off on my tube lengths and so i kept having to shave off more of the pvc tubing.
+    <p> After putting the telescope together, I struggled to get it focused. I ended up waiting for a clear night so I could
+        go outside and look through it at the moon. Once I could see the moon, I changed to length of the telescope by sliding
+        the toilet paper tube up and down the pvc tubing. This shortening and lengthening of the focal length allowed me
+        to dial in the image focus. It took a few tries as I was way off on my tube lengths and kept having to shave off
+        more of the pvc tubing.
     </p>
     <p>
-        Once I got the telescope focused, I taped the toilet paper tube to the pvc tubing so that the tubes would stay and place and i wouldn't loose focus.  I then took a cardboard box and cut a hole in the top of the box, about three quarters from the top for the eyepiece to poke through. I then placed the telescope on the box and taped it up, so it wouldn't move.
+        Once I got the telescope focused, I taped the toilet paper tube to the pvc tubing so that the tubes would stay in place and
+        wouldn't lose focus. I then took a cardboard box and cut a hole in the top of the box, about three quarters from
+        the top for the eyepiece to poke through and placed the eyepiece of the telescope in the hole taped it up, so it
+        wouldn't move.
     </p>
     <p>
-        I made a square cut on the side of the box for viewing the projected image.  And taped the printer paper to the inside of the box, opposite the eyepiece. For the base, I used another cardboard box.  I cut out two large round cardboard circles that I then glued to the body of the telescope housing so that I could set the body of the telescope into the base on it's round wheels.  This allowed the telescope to move up and down, and the base could be turned left and right for tracking the suns path accross the sky at pretty much any angle.
+        Next I made a square cut on the side of the box for viewing the projected image and taped some printer paper to the inside
+        of the box, opposite the eyepiece. For the base of the telescope, I used another cardboard box. I cut out two large
+        round cardboard circles that I then glued to the body of the cardboard box holding the telescope so that I could
+        set the body of the telescope into the base on it's round wheels. This allowed the telescope to move up and down,
+        and the base could be turned left and right for tracking the suns path across the sky at pretty much any angle.
     </p>
-    <h4>Raspicam Timelapse</h4>    
+    <h4>Raspicam Timelapse</h4>
     <p>
-        Unfortunately, when I ordered the pi camera, I ended up ordering the NoIR (non filtering infared) version, which is essentially a night camera meant to be used with infared lights.  You can still take pictures during the day with this camera, but it has the effect turning everything pink and red.  I figured it would be fine for my eclipse project since there wasn't really any color to the projected image of the sun.
+        Unfortunately, when I ordered the pi camera, I ended up ordering the NoIR (non filtering infrared) version, which is essentially
+        a night camera meant to be used with infrared lights. You can still take pictures during the day with this camera,
+        but it has the effect of turning everything pink and red. I figured it would be fine for my eclipse project since
+        there wasn't really any color contrast to the projected image of the sun.
     </p>
     <p>
-        The Raspberry Pi takes all the work out of this for you by providing some command line tools for interacting with the pi camera.
+        There are a couple of shell commands that can be used to take video or still images with the pi camera. There are several
+        flags that can be passed to determine image quality and orientation.
     </p>
     <ul>
         <li>
-            <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md">raspistill</a> - captures still photographs
+            <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md">raspistill</a> - captures
+            still photographs
         </li>
         <li>
-            <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> - captures video
+            <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> - captures
+            video
         </li>
-    </u>
-    <p>
-        Once I got the hang of taking pictures and messing with the various options, I decided I wanted to be able to schedule a "job" to start a timelapse at a specific date and time.  So I decided to check out some camera Node.js modules and found that <a href="https://www.npmjs.com/package/raspicam">raspicam</a> was an npm package that wrappered the raspistill commands and even had a timelapse option.  The only thing I needed to figure out was when to start the timelapse.  
-    </p>
-    <p>
-        There are some calculations that need to be made when setting up a timelapse.  It really is a bit of an art.  Adjusting the number of pictures in the series and the time intervals determines the total length of the video you are making and how slow or fast the video playback appears.  As a rule of thumb, I assumed I would need 25 still photos for 1 second of playback.  
-    </p>
+        </u>
+        <p>
+            Once I got the hang of taking pictures and messing with the various options, I decided it would be nice if I could set a
+            date and time for a timelapse to occur and just walk away. Some thing like a scheduled task. Not being much of
+            a Linux guru, I figured I would stick to Node.js and use a timer to trigger the timelapse. I don't really think
+            this is the best solution, but it would get the job done.
+        </p>
+        <p> So I decided to check out some pi camera Node.js modules and found that <a href="https://www.npmjs.com/package/raspicam">raspicam</a>
+            was an npm package that wrappered the raspistill commands and even had a timelapse option. The only thing I needed
+            to figure out was when to start the timelapse.
+        </p>
+        <p>            
+            To make sure I understood some of the variables and settings that needed to go into the timelapse, I searched around and found this 
+            really helpful <a href="http://www.photopills.com/calculators/timelapse">timelapse calculator</a>.  Depending on your constrained objective,
+            you need to setup a few parameters.
+        </p>
 </div>
 
 <script>
     var vid = document.getElementById("video");
     vid.volume = 0.2;
+
 </script>
