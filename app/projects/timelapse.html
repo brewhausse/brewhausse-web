@@ -186,17 +186,23 @@
         guru, I figured I would stick to Node.js and use a timer to trigger the timelapse. I don't really think this is the
         best solution, but it would get the job done.
     </p>
-    <p> So I decided to check out some pi camera Node.js modules and found that <a href="https://www.npmjs.com/package/raspicam">raspicam</a>        was an npm package that wrapped the raspistill commands and even had a timelapse option. The only thing I needed
+    <p> So I decided to check out some pi camera Node.js modules and found that <a href="https://www.npmjs.com/package/raspicam">raspicam</a>        
+        was an npm package that wrapped the raspistill commands and even had a timelapse option. The only thing I needed
         to figure out was when to start the timelapse.
     </p>
     <p>
         To make sure I understood some of the variables and settings that needed to go into the timelapse, I searched around and
         found this really helpful <a href="http://www.photopills.com/calculators/timelapse">timelapse calculator</a>.
-        Depending on your constrained objective, you need to setup a few parameters.
+        Depending on your constrained objective, you need to setup a few parameters.  The calculator basically allows you to
+        pick the variable you want it to calculate, namely the shooting interval, clip length or event duration.  The shooting interval
+        is the time between pictures.  The clip length is the length of video you are trying to create.  And the event duration is essentially
+        the length of time that the timelapse will occur.  There is some art to setting up the parameters depending on the event you're
+        trying to capture.  For instance, if you are trying to capture a sunrise, you might have a longer time interval between pictures than
+        you would if you were trying to get a timelapse of a crowd.
     </p>
     <p>
-        I created a simple Node.js app that would pull in all my settings from a special config file. Below is a sample of the config
-        file.
+        Once I had some idea of the parameters, I decided to setup a timelapse.js app that would pull from a couple of config files and 
+        setup the timelapse. Below is a sample of the config file.
     </p>
     <pre><code>var config = {
         mode: Enums.CalcMode.VideoLength,
@@ -210,7 +216,7 @@
 
     <h6>Settings Explained</h6>
     <ul>
-        <li>Mode - Determines what variable we want to calculate. Possible values are:
+        <li><bold>Mode</bold> - Determines what variable we want to calculate. Possible values are:
             <ul>
                 <li>Video Length (sec)</li>
                 <li>Shooting Interval (sec)</li>
@@ -243,7 +249,7 @@
         If user continues, a timeout is set and the calculated number of seconds to wait before executing the startTimelapse is passed in.
     </p>
     <p>
-        (I have since done some research and found that there are a number of npm packages that will take care of scheduling the timelaspse. I plan on 
+        (I have since done some research and found that there are a number of npm packages that will take care of scheduling the timelapse. I plan on 
         converting to one of those methods in the future.)
     </p>
     <p>
