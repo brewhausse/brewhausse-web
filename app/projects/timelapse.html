@@ -90,7 +90,7 @@
     </p>
     <p>
         Once I had a series of images from the timelapse, I would turn it into a video using <a href="https://www.ffmpeg.org/">ffmpeg</a>.
-        But my main objective was to make sure I could get be taking pictures by the time the eclipse rolled around.
+        But my main objective was to make sure I could be taking pictures by the time the eclipse rolled around.
     </p>
     <h4>Building the Solar Projector</h4>
     <div class="project-image seven columns u-pull-right">
@@ -149,8 +149,8 @@
     <p>
         Once I got the telescope focused, I taped the toilet paper tube to the pvc tubing so that the tubes would stay in place and
         wouldn't lose focus. I then took a cardboard box and cut a hole in the top of the box, about three quarters from
-        the top for the eyepiece to poke through and placed the eyepiece of the telescope in the hole taped it up, so it
-        wouldn't move.
+        the top for the eyepiece to poke through and placed the eyepiece of the telescope in the hole and taped it up so
+        it wouldn't move.
     </p>
     <p>
         Next I made a square cut on the side of the box for viewing the projected image and taped some printer paper to the inside
@@ -179,23 +179,96 @@
             <a href="https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspivid.md">raspivid</a> - captures
             video
         </li>
-        </u>
-        <p>
-            Once I got the hang of taking pictures and messing with the various options, I decided it would be nice if I could set a
-            date and time for a timelapse to occur and just walk away. Some thing like a scheduled task. Not being much of
-            a Linux guru, I figured I would stick to Node.js and use a timer to trigger the timelapse. I don't really think
-            this is the best solution, but it would get the job done.
-        </p>
-        <p> So I decided to check out some pi camera Node.js modules and found that <a href="https://www.npmjs.com/package/raspicam">raspicam</a>
-            was an npm package that wrappered the raspistill commands and even had a timelapse option. The only thing I needed
-            to figure out was when to start the timelapse.
-        </p>
-        <p>            
-            To make sure I understood some of the variables and settings that needed to go into the timelapse, I searched around and found this 
-            really helpful <a href="http://www.photopills.com/calculators/timelapse">timelapse calculator</a>.  Depending on your constrained objective,
-            you need to setup a few parameters.
-        </p>
-</div>
+    </ul>
+    <p>
+        Once I got the hang of taking pictures and messing with the various options, I decided it would be nice if I could set a
+        date and time for a timelapse to occur and just walk away. Something like a scheduled task. Not being much of a Linux
+        guru, I figured I would stick to Node.js and use a timer to trigger the timelapse. I don't really think this is the
+        best solution, but it would get the job done.
+    </p>
+    <p> So I decided to check out some pi camera Node.js modules and found that <a href="https://www.npmjs.com/package/raspicam">raspicam</a>        
+        was an npm package that wrapped the raspistill commands and even had a timelapse option. The only thing I needed
+        to figure out was when to start the timelapse.
+    </p>
+    <p>
+        To make sure I understood some of the variables and settings that needed to go into the timelapse, I searched around and
+        found this really helpful <a href="http://www.photopills.com/calculators/timelapse">timelapse calculator</a>.
+        Depending on your constrained objective, you need to setup a few parameters.  The calculator basically allows you to
+        pick the variable you want it to calculate, namely the shooting interval, clip length or event duration.  The shooting interval
+        is the time between pictures.  The clip length is the length of video you are trying to create.  And the event duration is essentially
+        the length of time that the timelapse will occur.  There is some art to setting up the parameters depending on the event you're
+        trying to capture.  For instance, if you are trying to capture a sunrise, you might have a longer time interval between pictures than
+        you would if you were trying to get a timelapse of a crowd.
+    </p>
+    <p>
+        Once I had some idea of the parameters, I decided to setup a timelapse.js app that would pull from a couple of config files and 
+        setup the timelapse. Below is a sample of the config file.
+    </p>
+    <pre><code>var config = {
+        mode: Enums.CalcMode.VideoLength,
+        start: moment('2017-08-17 13:00:00'),
+        eventDurationSec: moment.duration(3, 'hours').asSeconds(),
+        video: {
+          fps: 25
+        },
+        shootingIntervalSec: 5
+      };</code></pre>
+
+    <h6>Settings Explained</h6>
+    <ul>
+        <li><bold>Mode</bold> - Determines what variable we want to calculate. Possible values are:
+            <ul>
+                <li>Video Length (sec)</li>
+                <li>Shooting Interval (sec)</li>
+                <li>Event Duration (sec)</li>
+            </ul>
+        </li>
+        <li>Start - The date and time the camera will start taking pictures.</li>
+        <li>Event Duration - How long the the camera will take pictures.</li>
+        <li>Video - All video specific settings will be contained inside it's own object.
+            <ul>
+                <li>fps - The target rate of frames per second for the video.</li>
+            </ul>
+        </li>
+        <li>Shooting Interval - The number of seconds between pictures.</li>
+    </ul>
+    <p>
+        Once run, the user is prompted with any missing parameters.  If everything is ok, then they are prompted with the following:
+    </p>
+    <pre><code>
+        Calculating:                           VideoLength
+        Start:                     August 17, 2017 1:00 PM
+        Event Duration:                       3 hrs, 0 min
+        Shooting Interval:                    0 min, 5 sec
+        Video Length:                        1 min, 26 sec
+        Video Fps:                                      25
+        Number of Photos:                             2160
+        
+        Continue? [Y/n]</code></pre>
+    <p>
+        If user continues, a timeout is set and the calculated number of seconds to wait before executing the startTimelapse is passed in.
+    </p>
+    <p>
+        (I have since done some research and found that there are a number of npm packages that will take care of scheduling the timelapse. I plan on 
+        converting to one of those methods in the future.)
+    </p>
+    <p>
+        Once the timelapse starts, the pictures are stored in a folder and named photo_1.jpg, photo_2.jpg, photo_3.jpg, etc.  The name
+        of the images are set by passing an options object to the RaspiCam module with a special pattern.  My setting look like this:    
+    </p>
+    <pre><code>var opts = {
+            mode: 'timelapse',
+            output: 'photos/photo_%d.jpg',
+            hflip: true,
+            vflip: true,
+            timelapse: 5,
+            nopreview: true,
+            encoding: 'jpg',
+            quality: 75,
+            timeout: 0
+          }
+        </code></pre>
+</div><!-- row  -->
 
 <script>
     var vid = document.getElementById("video");
