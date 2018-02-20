@@ -4,5 +4,7 @@ services:
   web:
     build: .
     image: ci-brewweb
+    environment:
+     - VIRTUAL_HOST=brewhausse.com
     ports:
-     - 3000:3000
+     - 3000:4500
